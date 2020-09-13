@@ -1,13 +1,13 @@
-package com.dsm.gyeonggi;
+package com.dsm.pyeongan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GyeonggiApplication {
+public class PyeonganApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GyeonggiApplication.class, args);
+		SpringApplication.run(PyeonganApplication.class, args);
 	}
 
 }
