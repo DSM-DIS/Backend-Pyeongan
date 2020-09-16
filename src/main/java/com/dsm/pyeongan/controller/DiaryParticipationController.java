@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/diary")
-@Api(value = "Attendance Controller")
+@Api(value = "Diary Participation Controller")
 public class DiaryParticipationController {
 
     private DiaryParticipationService diaryParticipationService;
@@ -33,7 +33,9 @@ public class DiaryParticipationController {
                             HttpServletRequest request) {
         String accessToken = request.getHeader("accessToken");
         // accessToken 인증 해야함 :: MSA
+        // User id 얻어야 함 :: MSA
+        String user_id = "";
 
-        diaryParticipationService.participate(code);
+        diaryParticipationService.participate(user_id, code);
     }
 }
