@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest
 @RestController
 class DiaryBookController(@Autowired val diaryBookService: DiaryBookService) {
 
-    @GetMapping("/diary-book/participaint")
+    @GetMapping("/diary-book/participant")
     fun diaryParticipation(request: HttpServletRequest, @RequestBody code: CodeWrapperRequestForm) {
         val userId: String = request.getHeader("userId")
         return diaryBookService.connectingRoom(id = userId, code = code.code)

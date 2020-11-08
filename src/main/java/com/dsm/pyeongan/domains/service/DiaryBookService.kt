@@ -19,7 +19,7 @@ class DiaryBookService {
 
         val service = retrofit.create(DiaryBookRequestConnectionService::class.java)
 
-        service.addRequest(id = id, code = code)?.enqueue(object : Callback<Unit> {
+        service.addRequest(userId = id, code = code)?.enqueue(object : Callback<Unit> {
             override fun onFailure(call: Call<Unit>, t: Throwable) {
                 print("실패함")
             }
