@@ -45,11 +45,11 @@ jobs:
         run: ./gradlew clean build -x test
 
       - name: Create Docker Image
-        run: docker build --tag hwanghae .
+        run: docker build --tag pyeongan .
 
       - name: Upload to Docker Hub
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: 0816jinjin/hwanghae
+          name: 0816jinjin/pyeongan
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
