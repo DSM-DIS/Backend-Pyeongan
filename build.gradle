@@ -1,9 +1,25 @@
-plugins {
-	id 'org.springframework.boot' version '2.3.2.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
-	id 'jacoco'
+buildscript {
+	ext {
+		kotlinVersion = '1.4.10'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.4.RELEASE")
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+		classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+		classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
+	}
 }
+
+apply plugin: 'java'
+apply plugin: 'kotlin-spring'
+apply plugin: 'kotlin-jpa'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "kotlin-allopen"
+apply plugin: "kotlin-noarg"
 
 group = 'com.dsm'
 version = '0.0.1-SNAPSHOT'
@@ -14,24 +30,22 @@ repositories {
 	mavenCentral()
 }
 
-jacoco {
-	toolVersion = '0.8.5'
-	sourceCompatibility = '11'
-	targetCompatibility = '11'
-}
-
 dependencies {
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	implementation 'junit:junit:4.12'
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	runtimeOnly 'mysql:mysql-connector-java'
-
 	implementation 	'org.springframework.boot:spring-boot-starter-web'
 
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+	implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
+	implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -40,33 +54,12 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-	finalizedBy 'jacocoTestReport'
 }
 
-jacocoTestReport {
-	reports {
-		html.enabled true
-		xml.enabled false
-		csv.enabled true
-	}
-	finalizedBy 'jacocoTestCoverageVerification'
+allOpen {
+	annotation("javax.persistence.Entity")
 }
 
-jacocoTestCoverageVerification {
-	violationRules {
-		rule {
-			enabled = true
-			element = 'CLASS'
-
-			limit {
-				counter = 'METHOD'
-				value = 'COVEREDRATIO'
-				minimum = 0.90
-			}
-
-			excludes = [
-
-			]
-		}
-	}
+noArg {
+	annotation("javax.persistence.Entity")
 }
