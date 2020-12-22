@@ -1,9 +1,8 @@
 package com.dsm.pyeongan.controller;
 
 import com.dsm.pyeongan.domains.service.DiaryBookService;
-import com.dsm.pyeongan.utils.form.CodeWrapperRequestForm;
+import com.dsm.pyeongan.utils.form.CodeRequestForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +20,7 @@ public class DiaryBookController {
     }
 
     @PostMapping("/diary-book/participant")
-    public void diaryParticipation(HttpServletRequest request, @RequestBody CodeWrapperRequestForm code) {
+    public void diaryParticipation(HttpServletRequest request, @RequestBody CodeRequestForm code) {
         final String userId = request.getHeader("userId");
         diaryBookService.connectingRoom(userId, code.getCode());
     }
