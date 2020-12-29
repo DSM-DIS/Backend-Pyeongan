@@ -22,6 +22,6 @@ public class DiaryBookController {
     @PostMapping("/diary-book/participant")
     public void diaryParticipation(HttpServletRequest request, @RequestBody CodeRequestForm code) {
         final String userId = request.getHeader("userId");
-        diaryBookService.connectingRoom(userId, code.getCode());
+        diaryBookService.connectingRoom(userId, code);
     }
 }
