@@ -11,8 +11,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Service
 public class DiaryBookService {
-    public void connectingRoom(String userId, CodeRequestForm code) {
-        System.out.println("code : " + code.getCode());
+    public void connectingRoom(String userId, String code) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://gyeongsang:8893")
                 .client(new OkHttpClient().newBuilder().build())
@@ -21,6 +20,6 @@ public class DiaryBookService {
                 .build();
 
         DiaryBookRequestConnectionService service = retrofit.create(DiaryBookRequestConnectionService.class);
-        service.addRequest(userId, new Gson().toJson(code));
+        service.addRequest(userId, code);
     }
 }
