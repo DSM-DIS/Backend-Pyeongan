@@ -22,6 +22,6 @@ public class DiaryBookService {
                 .build();
 
         DiaryBookRequestConnectionService service = retrofit.create(DiaryBookRequestConnectionService.class);
-        service.addRequest(userId, code);
+        service.addRequest("/repositories/diary-book", userId, code);
     }
 }
