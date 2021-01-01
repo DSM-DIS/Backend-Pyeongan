@@ -12,6 +12,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Service
 public class DiaryBookService {
     public void connectingRoom(String userId, String code) {
+        System.out.println("userId : " + userId);
+        System.out.println("code : " + code);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://gyeongsang:8893")
                 .client(new OkHttpClient().newBuilder().build())
