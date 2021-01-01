@@ -15,11 +15,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class DiaryBookService {
     public void connectingRoom(String userId, String code) {
 
-        UserIdRequestForm userIdRequestForm = new Gson().fromJson(userId, UserIdRequestForm.class);
         CodeRequestForm codeRequestForm = new Gson().fromJson(code, CodeRequestForm.class);
         System.out.println("userId : " + userId);
         System.out.println("code : " + code);
-        DiaryBookRequestForm form = new DiaryBookRequestForm(userIdRequestForm.getUserId(), codeRequestForm.getCode());
+        DiaryBookRequestForm form = new DiaryBookRequestForm(userId, codeRequestForm.getCode());
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://gyeongsang:8893")
