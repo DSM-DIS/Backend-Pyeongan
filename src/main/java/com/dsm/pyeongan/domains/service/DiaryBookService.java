@@ -1,7 +1,5 @@
 package com.dsm.pyeongan.domains.service;
 
-import com.dsm.pyeongan.utils.form.CodeRequestForm;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Service;
