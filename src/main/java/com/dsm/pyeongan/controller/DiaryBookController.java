@@ -1,7 +1,6 @@
 package com.dsm.pyeongan.controller;
 
 import com.dsm.pyeongan.domains.service.DiaryBookService;
-import com.dsm.pyeongan.utils.form.CodeRequestForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,9 +1,10 @@
 package com.dsm.pyeongan.domains.service;
 
+import com.dsm.pyeongan.utils.form.CodeRequestForm;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Service;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -11,6 +12,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Service
 public class DiaryBookService {
     public void connectingRoom(String userId, String code) {
+
+        CodeRequestForm form = new Gson().fromJson(code, CodeRequestForm.class);
         System.out.println("userId : " + userId);
         System.out.println("code : " + code);
         Retrofit retrofit = new Retrofit.Builder()
@@ -22,7 +25,7 @@ public class DiaryBookService {
 
         DiaryBookRequestConnectionService service = retrofit.create(DiaryBookRequestConnectionService.class);
         try {
-            service.addRequest("/repositories/diary-book", userId, code).execute();
+            service.addRequest(new Gson().toJson(form)).execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
