@@ -22,7 +22,7 @@ public class DiaryBookService {
 
         DiaryBookRequestConnectionService service = retrofit.create(DiaryBookRequestConnectionService.class);
         try {
-            service.addRequest("/aaaa", userId, code).execute();
+            service.addRequest("/repositories/diary-book", userId, code).execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
