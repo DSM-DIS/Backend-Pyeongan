@@ -3,6 +3,7 @@ package com.dsm.pyeongan.domains.service;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Service;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -20,6 +21,10 @@ public class DiaryBookService {
                 .build();
 
         DiaryBookRequestConnectionService service = retrofit.create(DiaryBookRequestConnectionService.class);
-        service.addRequest("/aaaa", userId, code);
+        try {
+            service.addRequest("/aaaa", userId, code).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
