@@ -1,6 +1,8 @@
 package com.dsm.pyeongan.domains.service;
 
 import com.dsm.pyeongan.utils.form.CodeRequestForm;
+import com.dsm.pyeongan.utils.form.DiaryBookRequestForm;
+import com.dsm.pyeongan.utils.form.UserIdRequestForm;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
@@ -13,9 +15,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class DiaryBookService {
     public void connectingRoom(String userId, String code) {
 
-        CodeRequestForm form = new Gson().fromJson(code, CodeRequestForm.class);
+        UserIdRequestForm userIdRequestForm = new Gson().fromJson(userId, UserIdRequestForm.class);
+        CodeRequestForm codeRequestForm = new Gson().fromJson(code, CodeRequestForm.class);
         System.out.println("userId : " + userId);
         System.out.println("code : " + code);
+        DiaryBookRequestForm form = new DiaryBookRequestForm(userIdRequestForm.getUserId(), codeRequestForm.getCode());
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://gyeongsang:8893")
                 .client(new OkHttpClient().newBuilder().build())
